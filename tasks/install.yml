@@ -7,7 +7,7 @@
   when: ansible_distribution == 'Debian'
   sudo: yes
   apt_repository:
-    repo: "deb http://nginx.org/packages/debian/ {{ansible_distribution_release}} nginx"
+    repo: "deb http://nginx.org/packages/debian/ {{ ansible_lsb.codename }} nginx"
   tags:
     - nginx
     - frontend

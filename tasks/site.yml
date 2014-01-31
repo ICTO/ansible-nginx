@@ -14,6 +14,26 @@
 #
 # Other specified properties will be available to the template.
 
+- name: "Create default sites-available dir"
+  sudo: yes
+  file: path={{ nginx_available_sites_dir }} state=directory group=root owner=root mode=0755
+  when: ansible_distribution == 'Debian'
+  tags:
+    - nginx
+    - frontend
+    - conf
+    - sites
+
+- name: "Create default sites-enabled dir"
+  sudo: yes
+  file: path={{ nginx_enabled_sites_dir }} state=directory group=root owner=root mode=0755
+  when: ansible_distribution == 'Debian'
+  tags:
+    - nginx
+    - frontend
+    - conf
+    - sites
+
 - name: "Site {{site}} | Create site"
   sudo: yes
   template:
